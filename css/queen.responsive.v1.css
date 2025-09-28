@@ -1,0 +1,709 @@
+/* queen.responsive.css — v1 */
+
+/* 1 - Responsive Variables ------------------------------------------------- */
+:root {
+  --toolbar-gap-main: 18px;
+  --toolbar-gap-group: 8px;
+  --toolbar-gap-icons: 14px;
+  --toolbar-padding-x: 14px;
+  --toolbar-padding-y: 10px;
+  --btn-height: 44px;
+  --btn-icon-size: 44px;
+  --btn-font-size: 14px;
+  --btn-icon-font: 20px;
+  --btn-padding: 16px;
+  --header-height: 80px;
+  --header-logo: 40px;
+  --header-text: 28px;
+  --header-gap: 16px;
+  --header-padding: 20px;
+  --footer-height: 50px;
+  --footer-icon: 45px;
+  --footer-icon-svg: 22px;
+  --footer-text: 12px;
+  --footer-gap: 5px;
+  --footer-margin: 8px;
+  --modal-width: 420px;
+  --modal-title: 28px;
+  --modal-desc: 20px;
+  --modal-padding: 22px;
+  --modal-gap: 14px;
+  --modal-close: 32px;
+  --modal-close-font: 16px;
+}
+/* Bölüm sonu --------------------------------------------------------------- */
+
+/* 2 - Desktop XL (1920px+) ------------------------------------------------ */
+@media (min-width: 1920px) {
+  .qn-wrap{
+    max-width: 720px;
+    padding: 12px 28px;
+  }
+  
+  .qn-coach__title{
+    font-size: clamp(18px, calc(var(--board-size) * 0.030), 21px);
+  }
+  .qn-coach__subtitle{
+    font-size: clamp(14px, calc(var(--board-size) * 0.024), 17px);
+    margin-top: clamp(3px, calc(var(--board-size) * 0.004), 5px);
+  }
+  .qn-coach__hint{
+    font-size: clamp(11px, calc(var(--board-size) * 0.016), 14px);
+    margin-top: clamp(4px, calc(var(--board-size) * 0.006), 7px);
+  }
+}
+/* Bölüm sonu --------------------------------------------------------------- */
+
+/* 3 - Desktop (1024px-1919px) --------------------------------------------- */
+@media (min-width: 1024px) and (max-width: 1919px) {
+  :root {
+    --toolbar-gap-main: 14px;
+    --toolbar-gap-group: 6px;
+    --toolbar-gap-icons: 12px;
+    --toolbar-padding-x: 12px;
+    --toolbar-padding-y: 8px;
+    --btn-height: 40px;
+    --btn-icon-size: 40px;
+    --btn-font-size: 13px;
+    --btn-icon-font: 18px;
+    --btn-padding: 14px;
+    --header-height: 70px;
+    --header-logo: 36px;
+    --header-text: 24px;
+    --header-gap: 14px;
+    --header-padding: 16px;
+    --footer-height: 45px;
+    --footer-icon: 40px;
+    --footer-icon-svg: 20px;
+    --footer-text: 11px;
+    --footer-gap: 4px;
+    --footer-margin: 6px;
+    --modal-width: 380px;
+    --modal-title: 25px;
+    --modal-desc: 18px;
+    --modal-padding: 20px;
+    --modal-gap: 12px;
+    --modal-close: 30px;
+    --modal-close-font: 15px;
+  }
+  
+  .qn-wrap{
+    max-width: 640px;
+    padding: 10px 24px;
+  }
+  
+  .cm-toolbar .qn-toolbar--single .cm-sel{
+    max-width: 120px;
+    min-width: 55px;
+  }
+  
+  .qn-coach__title{
+    font-size: clamp(16px, calc(var(--board-size) * 0.032), 19px);
+  }
+  .qn-coach__subtitle{
+    font-size: clamp(12px, calc(var(--board-size) * 0.026), 15px);
+    margin-top: clamp(2px, calc(var(--board-size) * 0.004), 4px);
+  }
+  .qn-coach__hint{
+    font-size: clamp(9px, calc(var(--board-size) * 0.018), 12px);
+    margin-top: clamp(3px, calc(var(--board-size) * 0.006), 6px);
+  }
+}
+
+@media (min-width:1024px){
+  .qn-wrap{
+    padding-top:10px;
+  }
+}
+/* Bölüm sonu --------------------------------------------------------------- */
+
+/* 4 - Tablet (768px-1023px) ----------------------------------------------- */
+@media (min-width: 768px) and (max-width: 1023px) {
+  :root {
+    --toolbar-gap-main: 10px;
+    --toolbar-gap-group: 5px;
+    --toolbar-gap-icons: 8px;
+    --toolbar-padding-x: 10px;
+    --toolbar-padding-y: 6px;
+    --btn-height: 38px;
+    --btn-icon-size: 38px;
+    --btn-font-size: 12px;
+    --btn-icon-font: 16px;
+    --btn-padding: 12px;
+    --header-height: 64px;
+    --header-logo: 32px;
+    --header-text: 22px;
+    --header-gap: 12px;
+    --header-padding: 12px;
+    --footer-height: 40px;
+    --footer-icon: 36px;
+    --footer-icon-svg: 18px;
+    --footer-text: 10px;
+    --footer-gap: 3px;
+    --footer-margin: 4px;
+    --modal-width: 340px;
+    --modal-title: 22px;
+    --modal-desc: 16px;
+    --modal-padding: 18px;
+    --modal-gap: 10px;
+    --modal-close: 28px;
+    --modal-close-font: 14px;
+  }
+  
+  .qn-wrap{
+    max-width: 560px;
+    padding: 8px 20px;
+  }
+  
+  .cm-toolbar .qn-toolbar--single .cm-sel{
+    max-width: 100px;
+    min-width: 50px;
+  }
+  
+  .qn-coach__title{
+    font-size: clamp(14px, calc(var(--board-size) * 0.034), 17px);
+  }
+  .qn-coach__subtitle{
+    font-size: clamp(11px, calc(var(--board-size) * 0.028), 14px);
+    margin-top: clamp(2px, calc(var(--board-size) * 0.004), 4px);
+  }
+  .qn-coach__hint{
+    font-size: clamp(8px, calc(var(--board-size) * 0.020), 11px);
+    margin-top: clamp(3px, calc(var(--board-size) * 0.006), 5px);
+  }
+}
+
+@media (min-width:769px){
+  .qn-wrap{
+    padding-top:8px;
+  }
+}
+
+@media (max-width:768px) and (min-width:561px){
+  .qn-toolbar--top{
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+}
+
+@media (max-width:768px){
+  .cm-toolbar .qn-toolbar--single{
+    gap: var(--toolbar-gap-main);
+    padding: var(--toolbar-padding-y) var(--toolbar-padding-x);
+  }
+  
+  .cm-toolbar .qn-toolbar--single .qn-group{
+    margin:0;
+  }
+  
+  .cm-toolbar .qn-toolbar--single .qn-ctl-label{
+    font-size: clamp(7px, 1.2vw, 10px);
+  }
+  
+  .qn-toolbar--top{
+    flex-wrap:wrap;
+    justify-content:center;
+    gap: var(--toolbar-gap-main);
+  }
+  
+  .qn-toolbar--bottom{
+    flex-wrap:wrap;
+    justify-content:center;
+    gap: var(--toolbar-gap-main);
+  }
+  
+  .qn-group--mode, .qn-group--start{
+    margin-left:0;
+  }
+  
+  .qn-underbar{
+    gap: clamp(3px, 0.6vw, 6px);
+    padding: clamp(5px, 1vw, 8px) clamp(8px, 1.6vw, 12px);
+  }
+  
+  .qn-underbar .hud-chip{
+    padding: clamp(5px, 1vw, 8px) clamp(6px, 1.2vw, 10px);
+    gap: clamp(2px, 0.5vw, 4px);
+    font-size: clamp(10px, 1.8vw, 14px);
+  }
+  
+  .qn-underbar .hud-chip .lbl{
+    font-size: clamp(8px, 1.4vw, 11px);
+  }
+  
+  .qn-coach {
+    gap: clamp(6px, 1.4vw, 12px);
+    max-height: clamp(72px, 13vh, 130px);
+    margin-bottom: clamp(3px, 0.4vh, 6px);
+  }
+  
+  #qn-levels-inline{
+    gap: clamp(3px, 0.6vw, 6px);
+    max-height: clamp(50px, 7vh, 70px);
+  }
+  
+  #qn-levels-inline .lvl{
+    width: clamp(18px, 2.8vw, 24px);
+    height: clamp(18px, 2.8vw, 24px);
+    min-width: clamp(18px, 2.8vw, 24px);
+    min-height: clamp(18px, 2.8vw, 24px);
+    font-size: clamp(7px, 1.2vw, 10px);
+  }
+  
+  .qn-btn, .cm-btn{
+    transition-duration: 0.1s;
+  }
+  
+  #qn-countdown{
+    will-change: transform, opacity;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+/* Bölüm sonu --------------------------------------------------------------- */
+
+/* 5 - Mobile (375px-767px) ------------------------------------------------ */
+@media (min-width: 375px) and (max-width: 767px) {
+  :root {
+    --toolbar-gap-main: 6px;
+    --toolbar-gap-group: 3px;
+    --toolbar-gap-icons: 5px;
+    --toolbar-padding-x: 8px;
+    --toolbar-padding-y: 4px;
+    --btn-height: 36px;
+    --btn-icon-size: 36px;
+    --btn-font-size: 11px;
+    --btn-icon-font: 15px;
+    --btn-padding: 10px;
+    --header-height: 56px;
+    --header-logo: 28px;
+    --header-text: 18px;
+    --header-gap: 8px;
+    --header-padding: 8px;
+    --footer-height: 35px;
+    --footer-icon: 32px;
+    --footer-icon-svg: 16px;
+    --footer-text: 9px;
+    --footer-gap: 2px;
+    --footer-margin: 3px;
+    --modal-width: 300px;
+    --modal-title: 19px;
+    --modal-desc: 14px;
+    --modal-padding: 16px;
+    --modal-gap: 8px;
+    --modal-close: 26px;
+    --modal-close-font: 13px;
+  }
+  
+  .qn-wrap{
+    max-width: 480px;
+    padding: 6px 16px;
+    margin: 0 auto;
+  }
+  
+  .cm-toolbar .qn-toolbar--single .cm-sel{
+    max-width: 90px;
+    min-width: 45px;
+    font-size: clamp(8px, 1.4vw, 11px);
+    padding: 0 clamp(5px, 1vw, 8px);
+  }
+  
+  .qn-coach__title{
+    font-size: clamp(12px, calc(var(--board-size) * 0.036), 15px);
+  }
+  .qn-coach__subtitle{
+    font-size: clamp(9px, calc(var(--board-size) * 0.030), 12px);
+    margin-top: clamp(1px, calc(var(--board-size) * 0.004), 3px);
+  }
+  .qn-coach__hint{
+    font-size: clamp(6px, calc(var(--board-size) * 0.020), 8px);
+    margin-top: clamp(2px, calc(var(--board-size) * 0.006), 4px);
+    line-height: 1.2;
+  }
+}
+/* Bölüm sonu --------------------------------------------------------------- */
+
+/* 6 - Small Mobile (<375px) ----------------------------------------------- */
+@media (max-width: 374px) {
+  :root {
+    --toolbar-gap-main: 4px;
+    --toolbar-gap-group: 2px;
+    --toolbar-gap-icons: 3px;
+    --toolbar-padding-x: 6px;
+    --toolbar-padding-y: 3px;
+    --btn-height: 34px;
+    --btn-icon-size: 34px;
+    --btn-font-size: 10px;
+    --btn-icon-font: 14px;
+    --btn-padding: 8px;
+    --header-height: 48px;
+    --header-logo: 24px;
+    --header-text: 16px;
+    --header-gap: 6px;
+    --header-padding: 6px;
+    --footer-height: 30px;
+    --footer-icon: 28px;
+    --footer-icon-svg: 14px;
+    --footer-text: 8px;
+    --footer-gap: 1px;
+    --footer-margin: 2px;
+    --modal-width: 280px;
+    --modal-title: 16px;
+    --modal-desc: 12px;
+    --modal-padding: 14px;
+    --modal-gap: 6px;
+    --modal-close: 24px;
+    --modal-close-font: 12px;
+  }
+  
+  .qn-wrap{
+    max-width: 95vw;
+    padding: 4px 12px;
+    margin: 0 auto;
+  }
+  
+  .cm-toolbar .qn-toolbar--single .cm-sel{
+    max-width: 80px;
+    min-width: 40px;
+    font-size: clamp(7px, 1.2vw, 9px);
+    padding: 0 clamp(4px, 0.8vw, 6px);
+  }
+  
+  .qn-coach__hint{
+    font-size: clamp(5px, calc(var(--board-size) * 0.018), 7px);
+    margin-top: clamp(1px, calc(var(--board-size) * 0.004), 3px);
+    line-height: 1.15;
+    -webkit-line-clamp: 1;
+  }
+}
+
+@media (max-width: 320px) {
+  .cm-toolbar .qn-toolbar.qn-toolbar--single {
+    justify-content: flex-start;
+    overflow-x: auto;
+  }
+}
+/* Bölüm sonu --------------------------------------------------------------- */
+
+/* 7 - Mobile Specific Adjustments ----------------------------------------- */
+@media (max-width:560px){
+  .cm-toolbar .qn-toolbar--single{
+    gap: var(--toolbar-gap-main);
+    padding: var(--toolbar-padding-y) var(--toolbar-padding-x);
+  }
+  
+  .cm-toolbar .qn-toolbar--single .qn-btn--icon{
+    width: clamp(32px, 6vw, 40px);
+    height: clamp(32px, 6vw, 40px);
+    font-size: clamp(14px, 2.4vw, 18px);
+  }
+  
+  .cm-toolbar .qn-toolbar--single #qn-start{
+    padding: 0 clamp(6px, 1.2vw, 10px);
+    font-size: clamp(9px, 1.6vw, 13px);
+    height: clamp(32px, 6vw, 40px);
+  }
+  
+  .cm-toolbar .qn-toolbar--single .qn-ctl-label{
+    font-size: clamp(6px, 1vw, 9px);
+  }
+  
+  .qn-toolbar--top, .qn-toolbar--bottom{
+    flex-wrap:wrap;
+    justify-content:center;
+    gap: var(--toolbar-gap-main);
+  }
+  
+  .qn-group--mode, .qn-group--start{
+    margin-left:0;
+  }
+  
+  button.cm-btn, button.qn-btn, select.cm-sel{ 
+    height:44px; 
+    min-height:44px;
+  }
+  
+  .qn-ctl-label, .cm-toolbar label{ 
+    font-size:12px; 
+  }
+  
+  .qn-group--mode .qn-ctl-label{ 
+    font-size:11px; 
+    line-height:1.05; 
+  }
+  
+  .qn-softbar{ 
+    width:100%; 
+  }
+  
+  .qn-coach{ 
+    width:100%; 
+    margin:3px auto 2px; 
+  }
+  
+  .cm-ico{ 
+    width:44px; 
+    height:44px; 
+  }
+  
+  .cm-ico svg{ 
+    width:22px; 
+    height:22px; 
+  }
+}
+
+@media (max-width:480px){
+  .cm-toolbar .qn-toolbar--single{
+    gap: var(--toolbar-gap-main);
+    padding: var(--toolbar-padding-y) var(--toolbar-padding-x);
+  }
+  
+  .cm-toolbar .qn-toolbar--single .qn-group{
+    flex-wrap:nowrap;
+    justify-content:center;
+    min-width:0;
+  }
+  
+  .cm-toolbar .qn-toolbar--single .qn-group--side,
+  .cm-toolbar .qn-toolbar--single .qn-group--mode{
+    flex-basis:auto;
+    margin-bottom: clamp(1px, 0.2vw, 2px);
+  }
+  
+  .cm-toolbar .qn-toolbar--single .qn-group--start,
+  .cm-toolbar .qn-toolbar--single .qn-group--icons{
+    flex-basis:auto;
+  }
+  
+  .qn-underbar{
+    gap: clamp(2px, 0.4vw, 4px);
+    padding: clamp(4px, 0.8vw, 6px) clamp(6px, 1.2vw, 8px);
+  }
+  
+  .qn-underbar .hud-chip{
+    padding: clamp(4px, 0.8vw, 6px) clamp(5px, 1vw, 7px);
+    gap: clamp(1px, 0.3vw, 3px);
+    font-size: clamp(9px, 1.6vw, 12px);
+  }
+  
+  .qn-underbar .hud-chip .lbl{
+    font-size: clamp(7px, 1.2vw, 9px);
+  }
+  
+  .qn-coach {
+    gap: clamp(4px, 1vw, 8px);
+    max-height: clamp(64px, 11vh, 110px);
+    margin-bottom: clamp(2px, 0.3vh, 4px);
+  }
+  
+  .qn-coach__desc {
+    -webkit-line-clamp: 2;
+    max-height: calc(var(--bubble-height) * 0.55);
+  }
+  
+  .qn-coach__hint{
+    font-size: clamp(5px, calc(var(--board-size) * 0.019), 7px);
+    line-height: 1.18;
+    margin-top: clamp(1px, calc(var(--board-size) * 0.005), 3px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+  }
+  
+  .qn-coach__desc .qn-coach__hint,
+  .qn-coach__desc span.qn-coach__hint{
+    font-size: clamp(5px, calc(var(--board-size) * 0.019), 7px) !important;
+    line-height: 1.18 !important;
+  }
+  
+  #qn-levels-inline{
+    gap: clamp(2px, 0.4vw, 4px);
+    max-height: clamp(44px, 6vh, 60px);
+    justify-content:center;
+    align-content:center;
+  }
+  
+  #qn-levels-inline .lvl{
+    width: clamp(16px, 2.4vw, 20px);
+    height: clamp(16px, 2.4vw, 20px);
+    min-width: clamp(16px, 2.4vw, 20px);
+    min-height: clamp(16px, 2.4vw, 20px);
+    font-size: clamp(6px, 1vw, 9px);
+  }
+}
+
+@media (max-width:360px){
+  #qn-levels-inline{
+    gap: clamp(1px, 0.2vw, 2px);
+    max-height: clamp(40px, 5vh, 50px);
+  }
+  
+  #qn-levels-inline .lvl{
+    width: clamp(14px, 2vw, 18px);
+    height: clamp(14px, 2vw, 18px);
+    min-width: clamp(14px, 2vw, 18px);
+    min-height: clamp(14px, 2vw, 18px);
+    font-size: clamp(5px, 0.8vw, 8px);
+  }
+}
+/* Bölüm sonu --------------------------------------------------------------- */
+
+/* 8 - Erişilebilirlik ve Performans --------------------------------------- */
+@media (min-width:1100px){ 
+  #cm-board{ width: clamp(520px, 68vmin, 720px); } 
+}
+
+@supports (height: 100svh){ :root{ --vh:100svh; } }
+@supports (height: 100dvh){ :root{ --vh:100dvh; } }
+
+@media (hover: none) and (pointer: coarse){
+  #cm-board img{
+    -webkit-touch-callout:none; 
+    -webkit-user-drag:none;
+    -webkit-user-select:none; 
+    user-select:none;
+    pointer-events:none;
+  }
+  
+  .qn-wrap, .cm-btn, .qn-btn, .cm-sel{ touch-action: manipulation; }
+  a, button, .cm-sel{ -webkit-tap-highlight-color: rgba(0,0,0,0); }
+  
+  .cm-btn, .qn-btn, .cm-sel, .cm-ico{
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-touch-callout: none;
+    touch-action: manipulation;
+    user-select: none;
+  }
+  
+  .cm-btn, .qn-btn{
+    transition: transform 0.1s ease-out, background 0.15s ease;
+  }
+  
+  .cm-btn:active, .qn-btn:active{
+    transform: scale(0.98) translateZ(0);
+  }
+}
+
+@media (prefers-contrast: more){
+  :root{ --line:#AEB6C3; }
+  .qn-softbar, .qn-underbar .hud-chip{ border-width:2px; }
+  .cm-btn, .qn-btn, .cm-ico, .cm-sel{ border-color:#AEB6C3; box-shadow:none; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .cm-btn, .qn-btn, .cm-ico, #cm-board, #qn-levels-inline .lvl, .qn-timefill{ 
+    transition:none !important; 
+    animation:none;
+    scroll-behavior:auto;
+  }
+  #qn-countdown-back, #qn-modal-back{ backdrop-filter:none; }
+}
+/* Bölüm sonu --------------------------------------------------------------- */
+
+/* 9 - Safe Area Support (iOS) --------------------------------------------- */
+@supports (padding-top: env(safe-area-inset-top)) {
+  /* Header safe area */
+  .cm-nav {
+    padding-top: max(env(safe-area-inset-top), 0px);
+  }
+  
+  /* Main container safe areas */
+  .qn-wrap {
+    padding-left: max(20px, env(safe-area-inset-left));
+    padding-right: max(20px, env(safe-area-inset-right));
+    padding-bottom: max(var(--page-bottom-space), env(safe-area-inset-bottom));
+  }
+  
+  /* Footer safe area */
+  .cm-footer {
+    padding-bottom: max(calc(var(--footer-margin) * 0.5), env(safe-area-inset-bottom));
+  }
+  
+  /* Toolbar safe areas - landscape mode için önemli */
+  .cm-toolbar .qn-toolbar--single {
+    padding-left: max(var(--toolbar-padding-x), env(safe-area-inset-left));
+    padding-right: max(var(--toolbar-padding-x), env(safe-area-inset-right));
+  }
+  
+  /* Modal safe areas */
+  #qn-modal-back {
+    padding: max(16px, env(safe-area-inset-top)) 
+             max(16px, env(safe-area-inset-right))
+             max(16px, env(safe-area-inset-bottom))
+             max(16px, env(safe-area-inset-left));
+  }
+  
+  /* Countdown safe areas */
+  #qn-countdown-back {
+    padding: env(safe-area-inset-top) 
+             env(safe-area-inset-right)
+             env(safe-area-inset-bottom)
+             env(safe-area-inset-left);
+  }
+  
+  /* Underbar safe areas */
+  .qn-underbar {
+    margin-left: max(0px, env(safe-area-inset-left));
+    margin-right: max(0px, env(safe-area-inset-right));
+  }
+  
+  /* Board container - landscape için */
+  #cm-board {
+    margin-left: max(0px, calc(env(safe-area-inset-left) - 20px));
+    margin-right: max(0px, calc(env(safe-area-inset-right) - 20px));
+  }
+}
+
+/* iOS Standalone mode (Home Screen'den açıldığında) */
+@media (display-mode: standalone) {
+  .qn-wrap {
+    min-height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+  }
+  
+  body {
+    padding-top: env(safe-area-inset-top);
+  }
+}
+
+/* Landscape orientation safe areas */
+@media (orientation: landscape) {
+  @supports (padding-left: env(safe-area-inset-left)) {
+    .qn-wrap {
+      padding-left: max(24px, env(safe-area-inset-left));
+      padding-right: max(24px, env(safe-area-inset-right));
+    }
+    
+    .cm-toolbar .qn-toolbar--single {
+      padding-left: max(var(--toolbar-padding-x), calc(env(safe-area-inset-left) / 2));
+      padding-right: max(var(--toolbar-padding-x), calc(env(safe-area-inset-right) / 2));
+    }
+  }
+}
+
+/* iPhone X+ specific adjustments */
+@supports (padding-top: env(safe-area-inset-top)) and (min-aspect-ratio: 13/6) {
+  /* Extra padding for devices with notch */
+  .cm-nav {
+    padding-top: max(env(safe-area-inset-top), 20px);
+  }
+}
+
+/* Dark mode status bar */
+@media (prefers-color-scheme: dark) {
+  @supports (padding-top: env(safe-area-inset-top)) {
+    :root {
+      --safe-area-bg: rgba(13, 15, 18, 0.95);
+    }
+  }
+}
+
+/* Light mode status bar */
+@media (prefers-color-scheme: light) {
+  @supports (padding-top: env(safe-area-inset-top)) {
+    :root {
+      --safe-area-bg: rgba(245, 247, 250, 0.95);
+    }
+  }
+}
+/* Bölüm sonu --------------------------------------------------------------- */
