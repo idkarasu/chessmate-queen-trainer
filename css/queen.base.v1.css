@@ -1,0 +1,274 @@
+/* queen.base.css — v1 */
+
+/* 1 - CSS Variables -------------------------------------------------------- */
+:root{
+  --bg:#0D0F12; 
+  --text:#E9EDF1; 
+  --muted:#A7B0BA; 
+  --line:#232831; 
+  --panel:#11151b; 
+  --gold:#FFD700;
+  --btn:#12151a; 
+  --btn-border:#232831;
+  --hint:#3aa9ff;
+  --hintA:rgba(58,169,255,.9);
+  
+  --hint-normal: #3aa9ff;
+  --hintA-normal: rgba(58,169,255,.9);
+  --hint-combo: #ff8c00;
+  --hintA-combo: rgba(255,140,0,.9);
+  --hint-high: #ff1744;
+  --hintA-high: rgba(255,23,68,.9);
+  --hint-super: #9c27b0;
+  --hintA-super: rgba(156,39,176,.9);
+  
+  --modal-backdrop: rgba(0,0,0,.55);
+  --vh: 100dvh;
+  --hdr: 68px;
+  --ftr: 72px;
+  --ab: 0px;
+  --fit-epsilon: 2px;
+  --radius-lg:16px;
+  --radius-md:12px;
+  --shadow-sm:0 1px 2px rgba(16,24,40,.05);
+  --shadow-md:0 8px 24px rgba(16,24,40,.18);
+  --focus:#3AA9FF;
+  --cm-dur:180ms;
+  
+  --board-size: 400px;
+  
+  --page-bottom-space: clamp(4px, 1svh, 16px);
+  --footer-top-space: clamp(2px, 0.8svh, 12px);
+  --page-stretch: clamp(0px, 2svh, 20px);
+  --vr: clamp(4px, calc(var(--board-size) * 0.01), 12px);
+  
+  --ui-scale: clamp(.82, min(100svw / 375, 100svh / 812) * 1.0, 1.10);
+  --ui-font:  calc(var(--ui-scale) * 1rem);
+  --ui-icon:  calc(var(--ui-scale) * 18px);
+  --ui-gap:   calc(var(--ui-scale) * 12px);
+  --ui-padX:  calc(var(--ui-scale) * 12px);
+  --ui-padY:  calc(var(--ui-scale) * 8px);
+  --ui-minbtn:calc(var(--ui-scale) * 44px);
+  --ui-rad:   calc(var(--ui-scale) * 12px);
+  
+  --hud-title-h: clamp(18px, 2.6vw, 24px);
+  --hud-gap: clamp(6px, 1.2vw, 12px);
+  --hud-timebar-h: clamp(8px, 1.6vw, 12px);
+  
+  --qn-softbar-bg:rgba(0,0,0,.08);
+  --qn-softbar-mask:rgba(0,0,0,.08);
+  
+  --bg-grad-top-dark:#0b0e12;
+  --bg-grad-bot-dark:#0D0F12;
+  --bg-grad-top-light:#f7f9fc;
+  --bg-grad-bot-light:#ffffff;
+  --bg-grad-top: var(--bg-grad-top-dark);
+  --bg-grad-bot: var(--bg-grad-bot-dark);
+  --pattern-size: 40px;
+  --pattern-dark: rgba(255,255,255,.02);
+  --pattern-light: rgba(0,0,0,.025);
+  --pattern-color: var(--pattern-dark);
+}
+
+@media (min-width: 1920px) {
+  :root { --board-size: 640px; }
+}
+
+@media (min-width: 1024px) and (max-width: 1919px) {
+  :root { --board-size: 560px; }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  :root { --board-size: 480px; }
+}
+
+@media (min-width: 375px) and (max-width: 767px) {
+  :root { --board-size: 400px; }
+}
+
+body.cm-theme-light,
+body.light, body.light-mode, .theme-light, [data-theme="light"], .cm-light, [data-theme="day"], .day, .day-mode{
+  --bg:#F5F7FA;
+  --text:#0D0F12;
+  --muted:#556072;
+  --line:#DCE2EA;
+  --panel:#FFFFFF;
+  --btn:#F3F6FB;
+  --btn-border:#D8E0EA;
+  --modal-backdrop: rgba(255,255,255,.60);
+  --qn-softbar-bg:#F6F8FB;
+  --qn-softbar-mask:#F6F8FB;
+  --bg-grad-top: var(--bg-grad-top-light);
+  --bg-grad-bot: var(--bg-grad-bot-light);
+  --pattern-color: var(--pattern-light);
+}
+
+body.cm-theme-dark,
+body.dark, body.dark-mode, .theme-dark, [data-theme="dark"], .cm-dark{
+  --modal-backdrop: rgba(0,0,0,.55);
+  --qn-softbar-bg:rgba(0,0,0,.16);
+  --qn-softbar-mask:#0F1216;
+}
+
+html.cm-theme-light,
+html:has(body.cm-theme-light),
+html.light,
+html:has(body.light),
+html.light-mode,
+html:has(body.light-mode){
+  --bg-grad-top: var(--bg-grad-top-light);
+  --bg-grad-bot: var(--bg-grad-bot-light);
+  --pattern-color: var(--pattern-light);
+}
+/* Bölüm sonu --------------------------------------------------------------- */
+
+/* 2 - Sayfa düzeni ve temel stiller --------------------------------------- */
+html { -webkit-text-size-adjust: 100%; }
+html, body { height:100%; }
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}
+body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+
+body{
+  margin:0; 
+  color:var(--text);
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Noto Sans",Arial,sans-serif;
+  background:linear-gradient(180deg,#0b0e12 0%,var(--bg) 100%);
+  min-height: var(--vh);
+  padding-top: 0;
+}
+
+.qn-wrap{
+  position:relative;
+  margin:0 auto;
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:var(--radius-lg);
+  box-shadow:var(--shadow-md);
+  border-top:1px solid transparent;
+  display:flex; 
+  flex-direction:column;
+  max-width: calc(var(--board-size) + 80px);
+  padding: clamp(6px, 1.2vw, 20px) clamp(16px, 3vw, 24px);
+  padding-bottom: max(var(--page-bottom-space), env(safe-area-inset-bottom));
+  min-height: calc(var(--vh) - var(--ab) - var(--hdr) - var(--ftr) - 40px);
+}
+
+.qn-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:6px;
+  flex-direction:column;
+  text-align:center;
+}
+
+.qn-coach{  
+  margin-bottom: 3px;
+}
+
+.cm-toolbar{  
+  margin-bottom: 8px;
+}
+
+.qn-underbar{  
+  margin-top: 16px !important;
+}
+
+.qn-head, .qn-coach, .qn-underbar{ 
+  flex:0 0 auto; 
+}
+
+.qn-title{font-weight:800;font-size:18px;margin:0}
+
+.qn-grid{
+  flex:0 0 auto; 
+  display:flex; 
+  align-items:center; 
+  justify-content:center; 
+  min-block-size:0;
+}
+/* Bölüm sonu --------------------------------------------------------------- */
+
+/* 3 - Arka plan deseni ----------------------------------------------------- */
+html { position:relative; isolation:isolate; }
+
+html::before{
+  content:"";
+  position:fixed; 
+  inset:0;
+  z-index:-1; 
+  pointer-events:none;
+  background-image:
+    linear-gradient(45deg, var(--pattern-color) 25%, transparent 25%),
+    linear-gradient(-45deg, var(--pattern-color) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, var(--pattern-color) 75%),
+    linear-gradient(-45deg, transparent 75%, var(--pattern-color) 75%),
+    linear-gradient(180deg, var(--bg-grad-top), var(--bg-grad-bot));
+  background-size:
+    var(--pattern-size) var(--pattern-size),
+    var(--pattern-size) var(--pattern-size),
+    var(--pattern-size) var(--pattern-size),
+    var(--pattern-size) var(--pattern-size),
+    auto;
+  background-position:
+    0 0,
+    0 calc(var(--pattern-size)/2),
+    calc(var(--pattern-size)/2) calc(-1 * var(--pattern-size)/2),
+    calc(-1 * var(--pattern-size)/2) 0,
+    0 0;
+}
+/* Bölüm sonu --------------------------------------------------------------- */
+
+/* 4 - Tema uyumluluk ------------------------------------------------------- */
+body.cm-theme-light .qn-wrap{
+  background:var(--panel);
+  color:var(--text);
+  border-color:var(--line);
+}
+
+body.cm-theme-light .qn-btn,
+body.cm-theme-light .cm-btn{
+  background:var(--btn);
+  color:var(--text);
+  border-color:var(--btn-border);
+}
+
+body.cm-theme-light .qn-btn:hover,
+body.cm-theme-light .cm-btn:hover{
+  background:var(--btn-border);
+}
+
+body.cm-theme-light #qn-levels-inline .lvl.active{
+  background: var(--gold);
+  color: #0E1116;
+  transform: translateY(-1px);
+}
+
+body.cm-theme-light .qn-coach__title{
+  color: var(--text) !important;
+}
+
+body.cm-theme-light .qn-coach__subtitle{
+  color: var(--text) !important;
+}
+
+body.cm-theme-light .qn-coach__hint{
+  color: var(--text) !important;
+}
+
+body.cm-theme-light .qn-coach__desc{
+  color: var(--text) !important;
+}
+
+body.cm-theme-light .qn-coach__bubble .hl,
+body.cm-theme-light .qn-coach__title .hl,
+body.cm-theme-light .qn-coach__subtitle .hl,
+body.cm-theme-light .qn-coach__hint .hl,
+body.cm-theme-light .qn-coach__desc .hl{
+  color: var(--text) !important;
+  font-weight: 800;
+}
+/* Bölüm sonu --------------------------------------------------------------- */
