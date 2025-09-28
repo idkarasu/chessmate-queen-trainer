@@ -1,0 +1,568 @@
+/* queen.animations.css — v1 */
+
+/* 1 - İpuçları temel stiller ---------------------------------------------- */
+#cm-board .square-highlight{box-shadow:inset 0 0 0 3px var(--gold)}
+#cm-board .square-hint,#cm-board .square-hint-cap{position:relative}
+#cm-board .square-hint::after{
+  content:"";
+  position:absolute;
+  inset:38% 38%;
+  border-radius:50%;
+  background:var(--hintA);
+  pointer-events:none;
+  z-index:5;
+}
+#cm-board .square-hint-cap::after{
+  content:"";
+  position:absolute;
+  inset:12%;
+  border:3px solid var(--hint);
+  border-radius:50%;
+  background:transparent;
+  pointer-events:none;
+  z-index:5;
+}
+#cm-board.hints-active .square-highlight{box-shadow:inset 0 0 0 0 transparent}
+
+#cm-hints[aria-pressed="false"]{
+  opacity:.55;
+  filter:saturate(.2) contrast(.85) blur(.2px);
+}
+#cm-hints[aria-pressed="true"]{
+  opacity:1;
+  filter:none;
+}
+/* Bölüm sonu --------------------------------------------------------------- */
+
+/* 2 - Gelişmiş ipucu sistemi (VEZİR İÇİN 8 YÖN) -------------------------- */
+.square-hint-arrow {
+  position: relative;
+}
+
+.square-hint-arrow::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  transform: translate(-50%, -50%);
+  border: 8px solid transparent;
+  border-top: 12px solid var(--hint);
+  opacity: 0.9;
+  animation: arrowPulse 1.5s ease-in-out infinite;
+  z-index: 6;
+  pointer-events: none;
+}
+
+.square-hint-path {
+  position: relative;
+}
+
+.square-hint-path::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(58, 169, 255, 0.45) 20%,
+    rgba(58, 169, 255, 0.65) 50%, 
+    rgba(58, 169, 255, 0.45) 80%,
+    transparent 100%
+  );
+  animation: pathGlow 2s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: 5;
+  mix-blend-mode: multiply;
+  filter: brightness(1.5);
+}
+
+/* Çapraz path'ler için gradient açısı ayarlaması */
+.square-hint-path.diagonal-ne::before,
+.square-hint-path.diagonal-sw::before {
+  background: linear-gradient(45deg,
+    transparent 0%, 
+    rgba(58, 169, 255, 0.45) 20%,
+    rgba(58, 169, 255, 0.65) 50%, 
+    rgba(58, 169, 255, 0.45) 80%,
+    transparent 100%
+  );
+}
+
+.square-hint-path.diagonal-nw::before,
+.square-hint-path.diagonal-se::before {
+  background: linear-gradient(-45deg,
+    transparent 0%, 
+    rgba(58, 169, 255, 0.45) 20%,
+    rgba(58, 169, 255, 0.65) 50%, 
+    rgba(58, 169, 255, 0.45) 80%,
+    transparent 100%
+  );
+}
+
+.square-hint-destination {
+  position: relative;
+}
+
+.square-hint-destination::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, 
+    rgba(58, 169, 255, 0.6) 30%, 
+    transparent 70%
+  );
+  animation: destinationPulse 1s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 5;
+  mix-blend-mode: multiply;
+  filter: brightness(1.3);
+}
+
+/* 8 yönlü ok sistemi (VEZİR İÇİN) */
+.square-hint-arrow.arrow-up::after { 
+  transform: translate(-50%, -50%) rotate(0deg); 
+  border-top: 12px solid var(--hint);
+  border-bottom: none;
+}
+.square-hint-arrow.arrow-down::after { 
+  transform: translate(-50%, -50%) rotate(180deg); 
+  border-top: 12px solid var(--hint);
+  border-bottom: none;
+}
+.square-hint-arrow.arrow-left::after { 
+  transform: translate(-50%, -50%) rotate(-90deg); 
+  border-top: 12px solid var(--hint);
+  border-bottom: none;
+}
+.square-hint-arrow.arrow-right::after { 
+  transform: translate(-50%, -50%) rotate(90deg); 
+  border-top: 12px solid var(--hint);
+  border-bottom: none;
+}
+
+/* Çapraz yönler (VEZİR İÇİN YENİ) */
+.square-hint-arrow.arrow-up-right::after { 
+  transform: translate(-50%, -50%) rotate(45deg); 
+  border-top: 12px solid var(--hint);
+  border-bottom: none;
+}
+.square-hint-arrow.arrow-down-right::after { 
+  transform: translate(-50%, -50%) rotate(135deg); 
+  border-top: 12px solid var(--hint);
+  border-bottom: none;
+}
+.square-hint-arrow.arrow-down-left::after { 
+  transform: translate(-50%, -50%) rotate(225deg); 
+  border-top: 12px solid var(--hint);
+  border-bottom: none;
+}
+.square-hint-arrow.arrow-up-left::after { 
+  transform: translate(-50%, -50%) rotate(315deg); 
+  border-top: 12px solid var(--hint);
+  border-bottom: none;
+}
+/* Bölüm sonu --------------------------------------------------------------- */
+
+/* 3 - Combo renk sistemi -------------------------------------------------- */
+#cm-board.combo-active .square-hint-path::before {
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 140, 0, 0.5) 20%,
+    rgba(255, 140, 0, 0.7) 50%, 
+    rgba(255, 140, 0, 0.5) 80%,
+    transparent 100%
+  );
+  filter: brightness(1.4);
+}
+
+#cm-board.combo-active .square-hint-destination::before {
+  background: radial-gradient(circle at center, 
+    rgba(255, 140, 0, 0.65) 30%, 
+    transparent 70%
+  );
+  filter: brightness(1.3);
+}
+
+#cm-board.combo-active .square-hint-arrow::after {
+  border-top-color: var(--hint-combo);
+}
+
+#cm-board.combo-active .square-hint::after {
+  background: var(--hintA-combo);
+}
+
+#cm-board.combo-active .square-hint-cap::after {
+  border-color: var(--hint-combo);
+}
+
+/* Combo modunda tüm 8 yön için renk güncellemesi */
+#cm-board.combo-active .square-hint-arrow.arrow-up::after,
+#cm-board.combo-active .square-hint-arrow.arrow-down::after,
+#cm-board.combo-active .square-hint-arrow.arrow-left::after,
+#cm-board.combo-active .square-hint-arrow.arrow-right::after,
+#cm-board.combo-active .square-hint-arrow.arrow-up-right::after,
+#cm-board.combo-active .square-hint-arrow.arrow-down-right::after,
+#cm-board.combo-active .square-hint-arrow.arrow-down-left::after,
+#cm-board.combo-active .square-hint-arrow.arrow-up-left::after {
+  border-top-color: var(--hint-combo);
+}
+
+#cm-board.combo-high .square-hint-path::before {
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 23, 68, 0.55) 20%,
+    rgba(255, 23, 68, 0.75) 50%, 
+    rgba(255, 23, 68, 0.55) 80%,
+    transparent 100%
+  );
+  animation: pathGlow 1s ease-in-out infinite alternate;
+  filter: brightness(1.5);
+}
+
+#cm-board.combo-high .square-hint-destination::before {
+  background: radial-gradient(circle at center, 
+    rgba(255, 23, 68, 0.7) 30%, 
+    transparent 70%
+  );
+  animation: destinationPulse 0.8s ease-in-out infinite;
+  filter: brightness(1.3);
+}
+
+#cm-board.combo-high .square-hint-arrow::after {
+  border-top-color: var(--hint-high);
+  animation: arrowPulse 1.2s ease-in-out infinite;
+}
+
+#cm-board.combo-high .square-hint::after {
+  background: var(--hintA-high);
+  animation: hintPulse 1s ease-in-out infinite alternate;
+}
+
+#cm-board.combo-high .square-hint-cap::after {
+  border-color: var(--hint-high);
+  animation: capPulse 1s ease-in-out infinite alternate;
+}
+
+/* High combo modunda tüm 8 yön için renk güncellemesi */
+#cm-board.combo-high .square-hint-arrow.arrow-up::after,
+#cm-board.combo-high .square-hint-arrow.arrow-down::after,
+#cm-board.combo-high .square-hint-arrow.arrow-left::after,
+#cm-board.combo-high .square-hint-arrow.arrow-right::after,
+#cm-board.combo-high .square-hint-arrow.arrow-up-right::after,
+#cm-board.combo-high .square-hint-arrow.arrow-down-right::after,
+#cm-board.combo-high .square-hint-arrow.arrow-down-left::after,
+#cm-board.combo-high .square-hint-arrow.arrow-up-left::after {
+  border-top-color: var(--hint-high);
+}
+
+#cm-board.combo-super .square-hint-path::before {
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(156, 39, 176, 0.6) 25%, 
+    rgba(255, 215, 0, 0.7) 50%, 
+    rgba(156, 39, 176, 0.6) 75%, 
+    transparent 100%
+  );
+  animation: pathRainbow 1.5s ease-in-out infinite;
+  filter: brightness(1.6);
+}
+
+#cm-board.combo-super .square-hint-destination::before {
+  background: radial-gradient(circle at center, 
+    rgba(156, 39, 176, 0.7) 20%, 
+    rgba(255, 215, 0, 0.5) 50%, 
+    transparent 80%
+  );
+  animation: destinationSuper 1s ease-in-out infinite;
+  filter: brightness(1.4);
+}
+
+#cm-board.combo-super .square-hint-arrow::after {
+  border-top-color: var(--hint-super);
+  animation: arrowSuper 1s ease-in-out infinite;
+  filter: drop-shadow(0 0 8px var(--hint-super));
+}
+
+#cm-board.combo-super .square-hint::after {
+  background: var(--hintA-super);
+  animation: hintSuper 1.2s ease-in-out infinite;
+  box-shadow: 0 0 12px var(--hintA-super);
+}
+
+#cm-board.combo-super .square-hint-cap::after {
+  border-color: var(--hint-super);
+  animation: capSuper 1.2s ease-in-out infinite;
+  box-shadow: inset 0 0 8px var(--hintA-super);
+}
+
+/* Super combo modunda tüm 8 yön için renk güncellemesi */
+#cm-board.combo-super .square-hint-arrow.arrow-up::after,
+#cm-board.combo-super .square-hint-arrow.arrow-down::after,
+#cm-board.combo-super .square-hint-arrow.arrow-left::after,
+#cm-board.combo-super .square-hint-arrow.arrow-right::after,
+#cm-board.combo-super .square-hint-arrow.arrow-up-right::after,
+#cm-board.combo-super .square-hint-arrow.arrow-down-right::after,
+#cm-board.combo-super .square-hint-arrow.arrow-down-left::after,
+#cm-board.combo-super .square-hint-arrow.arrow-up-left::after {
+  border-top-color: var(--hint-super);
+}
+/* Bölüm sonu --------------------------------------------------------------- */
+
+/* 4 - Animasyonlar -------------------------------------------------------- */
+@keyframes arrowPulse {
+  0%, 100% { opacity: 0.7; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+}
+
+@keyframes pathGlow {
+  0% { opacity: 0.4; }
+  100% { opacity: 0.8; }
+}
+
+@keyframes destinationPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+@keyframes hintPulse {
+  0% { opacity: 0.8; transform: scale(1); }
+  100% { opacity: 1; transform: scale(1.1); }
+}
+
+@keyframes capPulse {
+  0% { opacity: 0.8; border-width: 3px; }
+  100% { opacity: 1; border-width: 4px; }
+}
+
+@keyframes pathRainbow {
+  0% { opacity: 0.6; filter: hue-rotate(0deg); }
+  50% { opacity: 1; filter: hue-rotate(30deg); }
+  100% { opacity: 0.6; filter: hue-rotate(0deg); }
+}
+
+@keyframes destinationSuper {
+  0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.8; }
+  50% { transform: scale(1.2) rotate(180deg); opacity: 1; }
+}
+
+@keyframes arrowSuper {
+  0%, 100% { 
+    opacity: 0.8; 
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    filter: drop-shadow(0 0 8px var(--hint-super));
+  }
+  50% { 
+    opacity: 1; 
+    transform: translate(-50%, -50%) scale(1.3) rotate(180deg);
+    filter: drop-shadow(0 0 16px var(--hint-super));
+  }
+}
+
+@keyframes hintSuper {
+  0%, 100% { 
+    transform: scale(1); 
+    box-shadow: 0 0 12px var(--hintA-super);
+  }
+  33% { 
+    transform: scale(1.1); 
+    box-shadow: 0 0 20px rgba(255,215,0,.8);
+  }
+  66% { 
+    transform: scale(1.05); 
+    box-shadow: 0 0 16px var(--hintA-super);
+  }
+}
+
+@keyframes capSuper {
+  0%, 100% { 
+    transform: scale(1); 
+    border-width: 3px;
+    box-shadow: inset 0 0 8px var(--hintA-super);
+  }
+  50% { 
+    transform: scale(1.1); 
+    border-width: 5px;
+    box-shadow: inset 0 0 16px rgba(255,215,0,.6);
+  }
+}
+/* Bölüm sonu --------------------------------------------------------------- */
+
+/* 5 - Hover efektleri ----------------------------------------------------- */
+.square-hint-arrow:hover::after {
+  animation: arrowPulse 0.8s ease-in-out infinite;
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.3);
+}
+
+.square-hint-path:hover {
+  animation: pathGlow 1s ease-in-out infinite alternate;
+  opacity: 1;
+}
+
+.square-hint-destination:hover {
+  animation: destinationPulse 0.6s ease-in-out infinite;
+  transform: scale(1.15);
+}
+/* Bölüm sonu --------------------------------------------------------------- */
+
+/* 6 - Sürükleme ve etkileşim (VEZİR İÇİN GÜNCELLENDİ) -------------------- */
+#cm-board .piece-417db.dragging-31d41[data-piece="wQ"].qn-drag-center,
+#cm-board .piece-417db.dragging-31d41[data-piece="bQ"].qn-drag-center{
+  transform:translate(-50%,-50%);
+}
+#cm-board .piece-417db{cursor:default;transition:none}
+#cm-board .piece-417db:active{cursor:default}
+#cm-board .piece-417db[data-piece="bP"],
+#cm-board .piece-417db[data-piece="wP"]{pointer-events:none}
+#cm-board,#cm-board *{
+  -webkit-touch-callout:none;
+  -webkit-user-select:none;
+  user-select:none;
+}
+#cm-board img,#cm-board .piece-417db{-webkit-user-drag:none}
+/* Bölüm sonu --------------------------------------------------------------- */
+
+/* 7 - Focus ve erişilebilirlik -------------------------------------------- */
+.cm-btn:focus{ outline:none; }
+.cm-btn:focus-visible,
+.qn-btn:focus-visible,
+.cm-sel:focus-visible,
+.cm-ico:focus-visible{
+  outline:2px solid var(--focus);
+  outline-offset:2px;
+}
+
+body.qn-modal-open, body.qn-count-open{ overflow:hidden; }
+@supports (overscroll-behavior:contain){
+  body.qn-modal-open, body.qn-count-open{ overscroll-behavior:contain; }
+}
+body.qn-drag-lock{
+  -ms-touch-action:none;
+  touch-action:none;
+  overscroll-behavior:contain;
+}
+
+html, body, .qn-wrap{
+  -webkit-touch-callout:none;
+  -webkit-user-select:none;
+  user-select:none;
+}
+img{ -webkit-user-drag:none; }
+input, textarea, [contenteditable="true"]{
+  -webkit-touch-callout:default;
+  -webkit-user-select:text;
+  user-select:text;
+}
+/* Bölüm sonu --------------------------------------------------------------- */
+
+/* 8 - Mobil performans optimizasyonları ---------------------------------- */
+#cm-board,
+.qn-wrap,
+.cm-btn,
+.qn-btn,
+.qn-modal,
+#qn-countdown-back{
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+body{
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+#cm-board .piece-417db{
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: transform, left, top;
+}
+
+@supports (-webkit-touch-callout: none){
+  #cm-board{
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-text-size-adjust: none;
+  }
+}
+/* Bölüm sonu --------------------------------------------------------------- */
+
+/* 9 - Reduced motion desteği ---------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .square-hint-arrow::after,
+  .square-hint-path,
+  .square-hint-destination {
+    animation: none !important;
+  }
+  
+  .square-hint-arrow::after {
+    opacity: 0.8;
+  }
+  
+  .square-hint-path {
+    opacity: 0.6;
+  }
+  
+  .square-hint-destination {
+    transform: none;
+  }
+  
+  #cm-board.combo-high .square-hint::after,
+  #cm-board.combo-high .square-hint-cap::after,
+  #cm-board.combo-super .square-hint::after,
+  #cm-board.combo-super .square-hint-cap::after {
+    animation: none !important;
+    box-shadow: none;
+  }
+  
+  #cm-board.combo-super .square-hint-arrow::after {
+    filter: none;
+  }
+}
+/* Bölüm sonu --------------------------------------------------------------- */
+
+/* 10 - Combo HUD animasyonları -------------------------------------------- */
+.hud-combo.combo-start {
+  animation: comboStart 0.3s ease-out;
+}
+
+.hud-combo.combo-increase {
+  animation: comboIncrease 0.4s ease-out;
+}
+
+.hud-combo.combo-break,
+.hud-combo.combo-break-effect {
+  animation: comboBreak 0.6s ease-out;
+}
+
+@keyframes comboStart {
+  0% { transform: scale(0); opacity: 0; }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes comboIncrease {
+  0% { transform: scale(1); }
+  30% { transform: scale(1.3); }
+  60% { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+
+@keyframes comboBreak {
+  0% { transform: scale(1) rotate(0deg); opacity: 1; }
+  50% { transform: scale(0.8) rotate(-5deg); opacity: 0.7; }
+  100% { transform: scale(0.6) rotate(0deg); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hud-combo.combo-start,
+  .hud-combo.combo-increase,
+  .hud-combo.combo-break,
+  .hud-combo.combo-break-effect {
+    animation: none !important;
+  }
+}
+/* Bölüm sonu --------------------------------------------------------------- */
