@@ -1,0 +1,34 @@
+/* queen.theme.css — v1 */
+
+/* 1 - Toolbar layout stilleri --------------------------------------------- */
+.qn-wrap .qn-head{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:4px}
+.qn-wrap .qn-head .cm-toolbar{flex:1 1 auto}
+.qn-toolbar-wrap{width:var(--board-size);max-width:92vw;margin:4px auto;display:block}
+/* Bölüm sonu --------------------------------------------------------------- */
+
+/* 2 - Tahta konteyneri ve notasyon ---------------------------------------- */
+#cm-board .board-b72b1{border-radius:12px;overflow:hidden;border:none;box-shadow:0 8px 24px rgba(15,23,42,.12);background:transparent}
+body.cm-theme-light #cm-board{background:#ECF1F8;outline:none;box-shadow:0 6px 22px rgba(0,0,0,.12)}
+/* Bölüm sonu --------------------------------------------------------------- */
+
+/* 3 - Vurgu ---------------------------------------------------------------- */
+body.cm-theme-light #cm-board .square-highlight,body.cm-theme-light .square-highlight{box-shadow:inset 0 0 0 2px #ffff00,inset 0 0 0 1000px rgba(255,255,0,.15)}
+:where(.qn-toolbar) :is(button,[role="button"],select,.qn-btn,.cm-btn):focus-visible{outline-color:var(--gold,#FFD700)}
+/* Bölüm sonu --------------------------------------------------------------- */
+
+/* 4 - Tahta temaları ------------------------------------------------------ */
+body.cm-board-classic #cm-board .white-1e1d7,body.cm-board-classic #cm-board .white,body.cm-board-classic #cm-board .square-55d63.white{background:#f0d9b5}
+body.cm-board-classic #cm-board .black-3c85d,body.cm-board-classic #cm-board .black,body.cm-board-classic #cm-board .square-55d63.black{background:#b58863}
+body.cm-board-green #cm-board .white-1e1d7,body.cm-board-green #cm-board .white,body.cm-board-green #cm-board .square-55d63.white{background:#f3f7ea}
+body.cm-board-green #cm-board .black-3c85d,body.cm-board-green #cm-board .black,body.cm-board-green #cm-board .square-55d63.black{background:#6fa066}
+body.cm-board-azure #cm-board .white-1e1d7,body.cm-board-azure #cm-board .white,body.cm-board-azure #cm-board .square-55d63.white{background:#f8fafc}
+body.cm-board-azure #cm-board .black-3c85d,body.cm-board-azure #cm-board .black,body.cm-board-azure #cm-board .square-55d63.black{background:#334155}
+/* Bölüm sonu --------------------------------------------------------------- */
+
+/* 5 - Koç Baloncuğu ------------------------------------------------------- */
+.qn-has-coach .qn-title{display:none}
+.qn-coach{position:relative;z-index:4}
+.qn-toolbar{position:relative;z-index:5}
+.qn-coach__avatar{border-color:var(--line,#2b3038);box-shadow:0 2px 6px rgba(0,0,0,.15)}
+body.cm-theme-dark .qn-coach__avatar{border-color:var(--line,#2b3038);box-shadow:0 2px 8px rgba(0,0,0,.35)}
+/* Bölüm sonu --------------------------------------------------------------- */
