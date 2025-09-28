@@ -1,0 +1,195 @@
+<!-- html.v1.html — Queen Trainer v1 -->
+<!DOCTYPE html>
+<html lang="en" id="html-root">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title id="page-title">Queen Training - ChessMate.ink</title>
+</head>
+<body>
+
+<!-- 1 - Header --------------------------------------------------------------- -->
+<header class="cm-nav" id="cm-site-header" aria-label="ChessMate.ink">
+  <div class="cm-container cm-nav-inner">
+    <a class="cm-brand" href="/" aria-label="ChessMate.ink">
+      <img src="https://chessmate.ink/wp-content/uploads/2025/08/Untitled-image.jpeg" alt="" class="cm-logo-img" loading="lazy">
+      <span class="cm-brand-text">ChessMate.ink</span>
+    </a>
+    <nav class="cm-menu" aria-label="Primary"></nav>
+  </div>
+</header>
+<!-- Bölüm sonu --------------------------------------------------------------- -->
+
+<!-- 2 - Stil dosyaları ------------------------------------------------------- -->
+<link rel="stylesheet" href="/wp-content/uploads/chess/libs/chessboard-1.0.0.min.css">
+<link rel="stylesheet" href="/wp-content/uploads/queen/css/queen.base.v1.css">
+<link rel="stylesheet" href="/wp-content/uploads/queen/css/queen.components.v1.css">
+<link rel="stylesheet" href="/wp-content/uploads/queen/css/queen.responsive.v1.css">
+<link rel="stylesheet" href="/wp-content/uploads/queen/css/queen.animations.v1.css">
+<link rel="stylesheet" href="/wp-content/uploads/queen/css/queen.theme.v1.css">
+<!-- Bölüm sonu --------------------------------------------------------------- -->
+
+<!-- 3 - Uygulama kapsayıcısı ------------------------------------------------ -->
+<main class="qn-wrap cm-wrap" id="cm-app" role="main" aria-label="Queen Trainer" data-avatar="/wp-content/uploads/2025/08/avatar.png">
+<div class="qn-head">
+<div class="cm-toolbar qn-toolbar-wrap" role="toolbar" aria-label="Game Controls">
+<div class="qn-toolbar qn-toolbar--single" role="toolbar" aria-label="Game toolbar">
+<div class="qn-group qn-group--side" aria-label="Side">
+<label for="qn-side-select" class="qn-ctl-label" data-i18n="label.side">Side:</label>
+<select id="qn-side-select" class="cm-sel" aria-label="Side">
+<option value="white" data-i18n="side.white">White</option>
+<option value="black" data-i18n="side.black">Black</option>
+</select>
+</div>
+<div class="qn-group qn-group--mode" aria-label="Game Mode">
+<label for="qn-mode-select" class="qn-ctl-label" data-i18n="label.mode">Game Mode:</label>
+<select id="qn-mode-select" class="cm-sel" aria-label="Game Mode">
+<option value="timed" data-i18n="mode.timed">⏱️ Timed Mode</option>
+<option value="levels" data-i18n="mode.levels">🌊 Eight Waves</option>
+</select>
+</div>
+<div class="qn-group qn-group--start">
+<button id="qn-start" class="cm-btn qn-btn qn-btn--primary" type="button" data-i18n="btn.start">▶ Start</button>
+</div>
+<div class="qn-group qn-group--icons">
+<button id="cm-hints" class="cm-btn qn-btn qn-btn--icon" type="button" aria-pressed="true" data-i18n-title="tooltip.hints.on" title="Hints: On">🎯</button>
+<button id="cm-board-toggle" class="cm-btn qn-btn qn-btn--icon" type="button" data-i18n-aria="tooltip.board" aria-label="Change Board Theme">♟️</button>
+<button id="cm-sound-toggle" class="cm-btn qn-btn qn-btn--icon" type="button" aria-pressed="true" data-i18n-title="tooltip.sound.on" title="Sound: On">🔊</button>
+<button id="cm-theme-toggle" class="cm-btn qn-btn qn-btn--icon" type="button" aria-pressed="false" data-i18n-title="tooltip.theme" title="Toggle Theme">🌙</button>
+</div>
+</div>
+</div>
+</div>
+
+<div class="qn-grid">
+<div id="cm-board" data-i18n-aria="aria.board" aria-label="Chess Board"></div>
+</div>
+
+<div class="qn-underbar" id="qn-underbar" role="region" data-i18n-aria="aria.gameinfo" aria-label="Game Information"></div>
+</main>
+<!-- Bölüm sonu --------------------------------------------------------------- -->
+
+<!-- 4 - Scriptler ------------------------------------------------------------ -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>if(!window.jQuery){var s=document.createElement('script');s.src='/wp-includes/js/jquery/jquery.min.js';document.head.appendChild(s)}</script>
+<script src="/wp-content/uploads/chess/libs/chessboard-1.0.0.min.js"></script>
+<script>window.CM_NO_CHROME = true;</script>
+<script src="/wp-content/uploads/queen/queen.core.v100.js"></script>
+<script src="/wp-content/uploads/queen/queen.modes.v1.js"></script>
+<script src="/wp-content/uploads/queen/queen.theme.v1.js"></script>
+<script src="/wp-content/uploads/queen/queen.ui.core.v1.js"></script>
+<script src="/wp-content/uploads/queen/queen.ui.events.v1.js"></script>
+<script src="/wp-content/uploads/queen/queen.ui.animations.v1.js"></script>
+<!-- Bölüm sonu --------------------------------------------------------------- -->
+
+<!-- 5 - Noscript ------------------------------------------------------------- -->
+<noscript>
+<div style="padding:20px;margin:20px;border:2px solid #ff6b6b;border-radius:8px;background:#fff2f2;color:#d63031;text-align:center;font-family:Arial,sans-serif;">
+<h2>⚠️ JavaScript Required</h2>
+<p><strong>Queen Training</strong> requires JavaScript to function.</p>
+<p>Please enable JavaScript in your browser and refresh the page.</p>
+</div>
+</noscript>
+<!-- Bölüm sonu --------------------------------------------------------------- -->
+
+<!-- 6 - Footer --------------------------------------------------------------- -->
+<footer class="cm-footer" id="cm-site-footer">
+  <div class="cm-container">
+    <div class="cm-social">
+      <a class="cm-ico" href="https://www.instagram.com/chessmate.ink/" target="_blank" rel="noopener" title="Instagram" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm6.5-.9a1.1 1.1 0 1 0 0 2.2 1.1 1.1 0 0 0 0-2.2zM12 9a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/></svg>
+      </a>
+      <a class="cm-ico" href="https://www.tiktok.com/@chessmate.ink" target="_blank" rel="noopener" title="TikTok" aria-label="TikTok">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20 8.1a6.8 6.8 0 0 1-4-1.3v7.4a5.7 5.7 0 1 1-5.7-5.7c.4 0 .7 0 1 .1v2.5A3.2 3.2 0 1 0 11 16V2h2a6.8 6.8 0 0 0 4 4.1c.6.3 1.3.5 2 .6v2.2c-.7-.1-1.4-.3-2-.6z"/></svg>
+      </a>
+      <a class="cm-ico" href="https://www.youtube.com/@ChessMate-ink" target="_blank" rel="noopener" title="YouTube" aria-label="YouTube">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M23.498 6.186a2.996 2.996 0 0 0-2.112-2.12C19.773 3.5 12 3.5 12 3.5s-7.773 0-9.386.566a2.996 2.996 0 0 0-2.112 2.12A31.49 31.49 0 0 0 0 12c0 2.05.17 4.098.502 5.814a2.996 2.996 0 0 0 2.112 2.12C4.227 20.5 12 20.5 12 20.5s7.773 0 9.386-.566a2.996 2.996 0 0 0 2.112-2.12C23.83 16.098 24 14.05 24 12s-.17-4.098-.502-5.814zM9.75 15.02v-6.04L15.5 12 9.75 15.02z"/></svg>
+      </a>
+      <a class="cm-ico" href="mailto:Chessmate.ink@gmail.com" title="E-posta" aria-label="E-posta">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M2 5h20a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2zm1.6 2 8.4 6 8.4-6H3.6zm18.8 1.7-8.9 6.3a2 2 0 0 1-2.4 0L2.2 8.7V17h20.2V8.7z"/></svg>
+      </a>
+    </div>
+    <p class="cm-copy">© ChessMate.ink — Everything About Chess.</p>
+  </div>
+</footer>
+<!-- Bölüm sonu --------------------------------------------------------------- -->
+
+<!-- 7 - Dynamic Language System Script ------------------------------------- -->
+<script>
+(function() {
+  'use strict';
+  
+  const getUrlLang = () => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const lang = params.get('lang');
+      return ['en', 'tr', 'de'].includes(lang) ? lang : 'en';
+    } catch(_) {
+      return 'en';
+    }
+  };
+  
+  const getStoredLang = () => {
+    try {
+      return localStorage.getItem('cm-lang') || 'en';
+    } catch(_) {
+      return 'en';
+    }
+  };
+  
+  const urlLang = getUrlLang();
+  const storedLang = getStoredLang();
+  const currentLang = urlLang !== 'en' ? urlLang : storedLang;
+  
+  const htmlEl = document.getElementById('html-root');
+  if (htmlEl) {
+    htmlEl.setAttribute('lang', currentLang);
+  }
+  
+  const titles = {
+    en: 'Queen Training - ChessMate.ink',
+    tr: 'Vezir Eğitimi - ChessMate.ink', 
+    de: 'Dame Training - ChessMate.ink'
+  };
+  
+  const titleEl = document.getElementById('page-title');
+  if (titleEl && titles[currentLang]) {
+    titleEl.textContent = titles[currentLang];
+  }
+  
+  const noscriptTranslations = {
+    en: {
+      title: '⚠️ JavaScript Required',
+      desc: '<strong>Queen Training</strong> requires JavaScript to function.',
+      help: 'Please enable JavaScript in your browser and refresh the page.'
+    },
+    tr: {
+      title: '⚠️ JavaScript Gerekli',
+      desc: '<strong>Vezir Eğitimi</strong> uygulaması çalışması için JavaScript\'in etkin olması gerekiyor.',
+      help: 'Lütfen tarayıcınızdan JavaScript\'i etkinleştirip sayfayı yenileyin.'
+    },
+    de: {
+      title: '⚠️ JavaScript Erforderlich', 
+      desc: '<strong>Dame Training</strong> benötigt JavaScript zum Funktionieren.',
+      help: 'Bitte aktivieren Sie JavaScript in Ihrem Browser und laden Sie die Seite neu.'
+    }
+  };
+  
+  const noscript = document.querySelector('noscript div');
+  if (noscript && noscriptTranslations[currentLang]) {
+    const trans = noscriptTranslations[currentLang];
+    noscript.innerHTML = `
+      <h2>${trans.title}</h2>
+      <p>${trans.desc}</p>
+      <p>${trans.help}</p>
+    `;
+  }
+  
+  window.CM_INITIAL_LANG = currentLang;
+  
+})();
+</script>
+<!-- Bölüm sonu --------------------------------------------------------------- -->
+
+</body>
+</html>
