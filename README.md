@@ -1,1 +1,1 @@
-
+# chessmate-queen-trainer
